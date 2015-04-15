@@ -5,30 +5,23 @@ var bankAccount = {
     },
     withdraw: function(amount) {
         this.balance -= parseInt(amount);
+    },
+    new_deposit: function(amount) {
+        this.deposit += parseInt(amount);
     }
 };
 
 
 $(document).ready(function() {
+    var bankAccount1 = Object.create(bankAccount);
     $('form#add').submit(function(event) {
         event.preventDefault();
         var name = $('input#name').val();
-        var initial_Deposit = $('input#initial_Deposit').val();
-        var bankAccount1 = Object.create(bankAccount);
-            bankAccount1.deposit(initial_Deposit);
+        var deposit = $('input#deposit').val();
+        var withdrawal = $('input#withdraw').val()
+            bankAccount1.deposit(deposit);
+            bankAccount1.withdraw(withdrawal);
+            console.log(bankAccount1);
             $('.final_balance').text(bankAccount1.balance);
     });
-    $('form#input_money').submit(function(event) {
-        event.preventDefault();
-        var deposit = $('input#deposit').val();
-        var withdraw = $('input#withdraw').val();
-        bankAccount1 = Object.create(bankAccount);
-        var new_deposit = $('input#initial_Deposit').val();
-        console.log(new_deposit);
-        bankAccount1.balance = new_deposit;
-        bankAccount1.deposit(deposit);
-        $('.final_balance').text(bankAccount1.balance);
-
-    });
-
 });
